@@ -1,4 +1,4 @@
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
@@ -16,7 +16,7 @@ $map: (
 );
 
 @each $direction, $translate in $map {
-  .slide-from-#{$direction}-enter,
+  .slide-from-#{$direction}-enter-from,
   .slide-from-#{$direction}-leave-to {
     transform: translate(#{$translate});
   }
@@ -26,7 +26,7 @@ $map: (
   }
 }
 @each $direction, $translate in $map {
-  .router-slide-from-#{$direction}-enter {
+  .router-slide-from-#{$direction}-enter-from {
     opacity: 0;
     transform: translate(#{$translate});
   }

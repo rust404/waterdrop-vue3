@@ -17,9 +17,9 @@
     <button class="clear-button" data-type="clear">back</button>
     <button v-if="!showEqual" class="submit-button" data-type="submit">完成</button>
     <button v-if="showEqual" class="equal-button" data-type="getResult">=</button>
-    <!--    <pop-up v-model="showDatePicker" position="bottom">-->
-    <!--      <DatePicker v-model="curDate" @ok="showDatePicker = false"/>-->
-    <!--    </pop-up>-->
+    <pop-up v-model:show="showDatePicker" position="bottom">
+      <DatePicker v-model:date="curDate" @ok="showDatePicker = false"/>
+    </pop-up>
   </div>
 </template>
 
@@ -28,6 +28,9 @@ import {defineComponent, computed, ref, watch} from 'vue'
 import Backspace from '@wing-ui/icons-vue3/lib/Backspace'
 import dayjs from "dayjs";
 import useCalc from "./useCalc";
+import PopUp from '/@/components/PopUp.vue'
+import Overlay from '/@/components/Overlay.vue'
+import DatePicker from '/@/components/DatePicker/DatePicker.vue'
 
 export type Operator = '+' | '-'
 export type NumberStr = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
@@ -35,14 +38,15 @@ export type NumberPadHandlerVal = Operator | NumberStr | 'submit' | 'date' | 'cl
 
 export default defineComponent({
   components: {
-    // PopUp,
-    // DatePicker,
-    Backspace
+    PopUp,
+    DatePicker,
+    Backspace,
+    Overlay
   },
   emits: [
-      'submit',
-      'update:calcStr',
-      'update:date'
+    'submit',
+    'update:calcStr',
+    'update:date'
   ],
   props: {
     date: Date,

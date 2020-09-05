@@ -29,6 +29,7 @@ export default defineComponent(
       components: {
         Overlay
       },
+      emits: ['update:show'],
       props: {
         show: {
           required: true,
