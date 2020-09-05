@@ -1,27 +1,32 @@
 <template>
   <nav class="nav-bar">
     <router-link class="nav-bar-item" to="/record/detail">
-<!--      <Icon class="nav-bar-icon" name="detail"/>-->
+      <file-alt-regular class="nav-bar-icon"/>
       明细
     </router-link>
     <router-link class="nav-bar-item" to="/record/add">
-<!--      <Icon class="nav-bar-icon" name="money"/>-->
+      <plus-circle class="nav-bar-icon"/>
       记一笔
     </router-link>
     <router-link class="nav-bar-item" to="/statistics">
-<!--      <Icon class="nav-bar-icon" name="statistics"/>-->
+      <chart-line class="nav-bar-icon"/>
       图表
     </router-link>
   </nav>
 </template>
 
 <script lang="ts">
-// import Icon from "@/components/Icon/Icon.vue";
+import FileAltRegular from '@wing-ui/icons-vue3/lib/FileAltRegular'
+import PlusCircle from '@wing-ui/icons-vue3/lib/PlusCircle'
+import ChartLine from '@wing-ui/icons-vue3/lib/ChartLine'
+import '@wing-ui/icons-vue3/lib/icon.css'
 
 export default {
   name: 'NavBar',
   components: {
-    // Icon
+    FileAltRegular,
+    PlusCircle,
+    ChartLine
   }
 }
 </script>

@@ -3,7 +3,7 @@
     <span class="left">
       <slot name="left">
         <button v-if="showBack" class="back-btn" @click="handleBack">
-<!--          <icon class="back-icon" name="back" />-->
+          <chevron-left class="back-icon"/>
           返回
         </button>
       </slot>
@@ -14,10 +14,13 @@
 </template>
 
 <script lang="ts">
-// import Icon from "@/components/Icon/Icon.vue";
+import ChevronLeft from '@wing-ui/icons-vue3/lib/ChevronLeft'
 
 export default  {
   name: 'TopBar',
+  components: {
+    ChevronLeft
+  },
   props: {
     showBack: {
       type: Boolean,
@@ -58,6 +61,8 @@ $y-space: 8px;
   }
 }
 .back-btn {
+  display: flex;
+  align-items: center;
   color: $grey-5;
   .back-icon {
     fill: $grey-5;
