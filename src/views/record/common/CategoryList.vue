@@ -7,29 +7,25 @@
       @click="handleClick(category.id)"
     >
       <div class="category-icon-wrapper">
-<!--        <Icon :size="30" class="category-icon" :name="category.icon" />-->
       </div>
       {{category.name}}
     </li>
     <li
         v-if="type === 'manage'"
-        key="setting"
         @click="handleManage"
-        class="category-list-item"
+        class="category-list-item is-active"
     >
       <div class="category-icon-wrapper">
-<!--        <Icon :size="30" class="category-icon" name="settings" />-->
+        <cog class="category-icon" size="30px"/>
       </div>
       管理
     </li>
     <li
         v-if="type === 'add'"
-        key="add"
         @click="handleAdd"
         class="category-list-item"
     >
       <div class="category-icon-wrapper">
-<!--        <Icon :size="30" class="category-icon" name="tianjia" />-->
       </div>
       添加
     </li>
@@ -38,8 +34,14 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue'
+import Cog from '@wing-ui/icons-vue3/lib/Cog'
+import Plus from '@wing-ui/icons-vue3/lib/Plus'
 
 export default defineComponent({
+  components: {
+    Cog,
+    Plus
+  },
   props: {
     selectedCategoryId: Number,
     listData: Array as PropType<Category[]>,
@@ -69,14 +71,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '~@/style/variable';
+@import '../../../style/variable';
 $gap: 20px;
 .category-list {
   display: flex;
   flex-wrap: wrap;
   padding: $gap / 2;
   align-items: flex-start;
-  .category-list-item {
+  &-item {
     width: 20%;
     margin: $gap / 2 0;
     list-style: none;
@@ -97,7 +99,7 @@ $gap: 20px;
     &.is-active .category-icon-wrapper {
       background-color: $brand-color;
       .category-icon {
-        fill: $grey-2;
+        color: $grey-2;
       }
     }
   }
