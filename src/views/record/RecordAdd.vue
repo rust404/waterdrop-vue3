@@ -1,9 +1,14 @@
 <template>
   <layout>
-    record add
-    <div @click="onClick">show message</div>
+    {{123}}
+    {{moneyType}}
     <template v-slot:header>
-      <top-bar>123</top-bar>
+      <top-bar>
+        <radio-group v-model:value="moneyType">
+          <radio-button label="expenditure">支出</radio-button>
+          <radio-button label="income">收入</radio-button>
+        </radio-group>
+      </top-bar>
     </template>
     <template v-slot:footer>
       <nav-bar></nav-bar>
@@ -11,12 +16,14 @@
   </layout>
 </template>
 
-<script>
-import {ref, defineComponent, onMounted} from 'vue'
+<script lang="ts">
+import {ref, defineComponent} from 'vue'
 import Layout from '/@/components/Layout.vue'
 import NavBar from '/@/components/NavBar.vue'
 import TopBar from '/@/components/TopBar.vue'
 import PopUp from '/@/components/PopUp.vue'
+import RadioGroup from '/@/components/Radio/RadioGroup.vue'
+import RadioButton from '/@/components/Radio/RadioButton.vue'
 
 export default defineComponent({
   name: 'RecordAdd',
@@ -24,17 +31,22 @@ export default defineComponent({
     Layout,
     NavBar,
     TopBar,
-    PopUp
+    PopUp,
+    RadioButton,
+    RadioGroup,
   },
   methods: {
-    onClick() {
-      this.$message.warning('hello')
-    }
   },
   setup() {
-    const show = ref(false)
+    const moneyType  = ref<MoneyType>('expenditure')
+    const selectedId = ref<number>(-1)
+    const calcStr = ref<string>('0')
+    const curDate = ref<Date>(new Date())
     return {
-      show
+      moneyType,
+      selectedId,
+      calcStr,
+      curDate
     }
   }
 })
