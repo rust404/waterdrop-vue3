@@ -20,21 +20,23 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue'
+import {defineComponent} from 'vue'
 import {MessageItem, MessageType, MessageOption} from './message-types';
 
 // vue3无法直接获取到组件实例及其实例方法，只能曲线救国
-export const API = {}
+export let API: { addMessage: (options: MessageOption) => void }
 
 export default defineComponent({
   data() {
     return {
-      messages: [],
+      messages: [] as MessageItem[],
       animateDuration: 200
     }
   },
   created() {
-    API.addMessage = this.addMessage
+    API = {
+      addMessage: this.addMessage
+    }
   },
   methods: {
     messageClass(type: MessageType) {

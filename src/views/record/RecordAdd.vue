@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import {ref, defineComponent} from 'vue'
+import {ref, defineComponent, computed} from 'vue'
 import Layout from '/@/components/Layout.vue'
 import NavBar from '/@/components/NavBar.vue'
 import TopBar from '/@/components/TopBar.vue'
@@ -32,6 +32,7 @@ import RadioButton from '/@/components/Radio/RadioButton.vue'
 import CalcStrBar from './common/CalcStrBar.vue'
 import NumberPad from "./common/NumberPad.vue";
 import CategoryList from "./common/CategoryList.vue";
+import {useStore} from "vuex";
 
 export default defineComponent({
   name: 'RecordAdd',
@@ -52,12 +53,16 @@ export default defineComponent({
     }
   },
   setup() {
+    const store = useStore()
+    store.dispatch('category/load')
+
     const moneyType  = ref<MoneyType>('expenditure')
     const selectedId = ref<number>(-1)
     const calcStr = ref<string>('0')
     const curDate = ref<Date>(new Date())
     const onManageClick = () => {}
-    const selectedCategoryList = []
+    const selectedCategoryList = computed<Category[]>(() => store.state.category.categoryList)
+
     return {
       moneyType,
       selectedId,

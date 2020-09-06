@@ -22,17 +22,16 @@ export default defineComponent({
   },
   computed: {
     _radioGroup() {
-      // TODO
       return this.$parent as RadioGroup
     },
-    radioButtonClassName() {
+    radioButtonClassName(): {[index: string]: Boolean} {
       return {
         'radio-button': true,
         'is-active': this.label === this.value
       }
     },
     value: {
-      get() {
+      get():String | undefined {
         return this._radioGroup.value
       },
       set() {

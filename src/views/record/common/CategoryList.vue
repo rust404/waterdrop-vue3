@@ -47,7 +47,7 @@ export default defineComponent({
     listData: Array as PropType<Category[]>,
     type: String as PropType<'manage' | 'add'>
   },
-  emits: ['update:selectedCategoryId', 'manage'],
+  emits: ['update:selectedCategoryId', 'manage', 'change', 'add'],
   setup(props, {emit}) {
     return {
       listItemClassName(category: Category) {

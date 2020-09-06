@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from "vue-router";
+import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 import RecordAdd from "/@/views/record/RecordAdd.vue";
 import RecordDetail from "/@/views/record/RecordDetail.vue";
 import RecordEdit from "/@/views/record/RecordEdit.vue";
@@ -8,7 +8,7 @@ import CategoryManage from "/@/views/category/CategoryManage.vue";
 import NotFound from "/@/views/NotFound.vue";
 import Statistics from "/@/views/Statistics.vue";
 
-const routes = [
+const routes:RouteRecordRaw[] = [
   {
     path: "/record/detail",
     component: RecordDetail,
@@ -38,14 +38,11 @@ const routes = [
     component: Statistics,
   },
   {
-    path: "/404",
-    component: NotFound,
-  },
-  {
     path: "/",
     redirect: "/record/add",
   },
-  // 404暂时不适用
+  // https://github.com/vuejs/vue-router-next/blob/master/playground/router.ts
+  { path: '/:data(.*)', component: NotFound},
   // {
   //   path: "*",
   //   redirect: "/404",

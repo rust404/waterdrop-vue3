@@ -12,7 +12,7 @@
 <script lang="ts">
 import {defineComponent, reactive, ref, PropType, onMounted, watchEffect} from 'vue'
 
-type ListItem = string | number
+type ListItem = string
 
 const LIST_ITEM_HEIGHT = 30
 
@@ -23,7 +23,8 @@ export default defineComponent({
       type: Array as PropType<ListItem[]>
     },
     value: {
-      type: [String, Number]
+      type: [String, Number],
+      required: true
     }
   },
   emits: ['update:value'],
@@ -35,7 +36,13 @@ export default defineComponent({
       transition: 'none'
     })
     onMounted(() => {
-      const index = props.listData.indexOf(props.value)
+      let index = -1
+      for (let i = 0; i < props.listData.length; i++) {
+        if (props.listData[i].toString() === props.value.toString()) {
+          index = i
+          break
+        }
+      }
       style.top = -index * LIST_ITEM_HEIGHT + 'px'
     })
     watchEffect(() => {

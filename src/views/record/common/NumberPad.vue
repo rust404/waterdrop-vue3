@@ -49,17 +49,18 @@ export default defineComponent({
     'update:date'
   ],
   props: {
-    date: Date,
-    calcStr: String
-  },
-  computed: {
-    dateStr() {
-      return dayjs(this.curDate).format('YYYY/MM/DD')
+    date: {
+      type: Date,
+      required: true
+    },
+    calcStr: {
+      type: String,
+      required: true
     }
   },
   setup(props, {emit}) {
     const {calcStr, getCalcResult, clear, addChar} = useCalc(props.calcStr)
-    const curDate = ref<Date>(props.date || new Date())
+    const curDate = ref(props.date || new Date())
     const showDatePicker = ref<boolean>(false)
     const dateStr = computed(() => {
       return dayjs(curDate.value).format('YYYY/MM/DD')
@@ -73,7 +74,7 @@ export default defineComponent({
       while (container.contains(target) && !target.dataset.type) {
         target = target.parentNode as HTMLElement
       }
-      const btnType = target.dataset.type
+      const btnType = target.dataset.type as NumberPadHandlerVal
       if (container === target) return
       switch (btnType) {
         case '+':

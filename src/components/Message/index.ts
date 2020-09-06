@@ -8,9 +8,8 @@ export default {
     container.id = "MessageContainer";
     document.body.appendChild(container);
     // eslint-disable-next-line
-    const instance = createApp(Message) as Message
-    instance.mount(container) // TODO
-
+    const instance = createApp(Message)
+    instance.mount(container)
 
     const types: MessageType[] = ["primary" , "warning" , "danger" , "info" , "success"];
     type ShorthandMessageFunction = (message: string, duration: number) => void
