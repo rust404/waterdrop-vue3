@@ -12,6 +12,8 @@ import MobileAlt from '@wing-ui/icons-vue3/lib/MobileAlt'
 import HandHoldingUsd from '@wing-ui/icons-vue3/lib/HandHoldingUsd'
 import {defineComponent} from 'vue'
 
+export const iconList = ['utensils', 'suitcase-rolling', 'dollar-sign', 'book', 'bus', 'mobile-alt', 'hand-holding-usd']
+
 export default defineComponent({
   name: 'CategoryIcon',
   components: {

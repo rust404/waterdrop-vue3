@@ -27,6 +27,7 @@
         class="category-list-item"
     >
       <div class="category-icon-wrapper">
+        <plus class="category-icon" size="24px"/>
       </div>
       添加
     </li>

@@ -34,6 +34,7 @@ import NumberPad from "./common/NumberPad.vue";
 import CategoryList from "./common/CategoryList.vue";
 import {message} from "/@/components/Message"
 import {useStore} from "vuex";
+import {useRouter} from "vue-router";
 
 export default defineComponent({
   name: 'RecordAdd',
@@ -50,14 +51,20 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
+    const router = useRouter()
     store.dispatch('category/load')
 
     const moneyType  = ref<MoneyType>('expenditure')
     const selectedId = ref<number>(-1)
     const calcStr = ref<string>('0')
     const curDate = ref<Date>(new Date())
-    const onManageClick = () => {}
-    const selectedCategoryList = computed<Category[]>(() => store.state.category.categoryList)
+    const onManageClick = () => {
+      router.push('/category/manage')
+    }
+    const selectedCategoryList = computed<Category[]>(() => {
+      return (store.state.category.categoryList as Category[]).filter(category => category.moneyType ===
+          moneyType.value)
+    })
 
     const validate = () => {
       if (selectedId.value === -1) {

@@ -3,7 +3,7 @@ import { createStore, StoreOptions } from "vuex";
 import { category } from "./modules/category";
 import { record } from "./modules/record";
 
-const store: StoreOptions<{}> = {
+const options: StoreOptions<{}> = {
   state: {},
   modules: {
     category,
@@ -11,4 +11,4 @@ const store: StoreOptions<{}> = {
   },
 };
 
-export default createStore(store);
+export default createStore(options);
