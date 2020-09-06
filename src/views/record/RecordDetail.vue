@@ -81,7 +81,6 @@ export default defineComponent({
     const recordList = computed(() => {
       return store.state.record.recordList as MoneyRecord[]
     })
-    console.log(recordList)
     const getFormattedDate = (date: Date | string | number) => {
       const str = '日一二三四五六'
       return dayjs(date).format('M月D日 星期') + str[dayjs(date).day()]
