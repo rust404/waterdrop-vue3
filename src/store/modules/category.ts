@@ -5,37 +5,37 @@ import {getCategories, getCategoryById} from "/@/store/utils";
 const defaultCategoryList: Omit<Category, 'id'>[] = [
   {
     name: "餐饮",
-    icon: "canyin",
+    icon: "utensils",
     moneyType: "expenditure",
   },
   {
     name: "旅行",
-    icon: "lvxing",
+    icon: "suitcase-rolling",
     moneyType: "expenditure",
   },
   {
     name: "理财",
-    icon: "licai",
+    icon: "dollar-sign",
     moneyType: "income",
   },
   {
     name: "读书",
-    icon: "dushu",
+    icon: "book",
     moneyType: "expenditure",
   },
   {
     name: "交通",
-    icon: "jiaotong",
+    icon: "bus",
     moneyType: "expenditure",
   },
   {
     name: "数码",
-    icon: "shuma",
+    icon: "mobile-alt",
     moneyType: "expenditure",
   },
   {
     name: "工资",
-    icon: "gongzi",
+    icon: "hand-holding-usd",
     moneyType: "income",
   },
 ]

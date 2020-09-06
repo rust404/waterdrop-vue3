@@ -103,6 +103,9 @@ export default defineComponent({
     watch(calcStr, (value) => {
       emit('update:calcStr', value)
     })
+    watch(curDate, (value) => {
+      emit('update:date', value)
+    })
     return {
       showEqual,
       curDate,

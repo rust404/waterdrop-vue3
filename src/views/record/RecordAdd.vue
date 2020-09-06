@@ -12,7 +12,7 @@
       <nav-bar></nav-bar>
     </template>
     <div class="category-list-wrapper">
-      <category-list type="manage" v-model="selectedId" :listData="selectedCategoryList" @manage="onManageClick"/>
+      <category-list type="manage" v-model:selectedId="selectedId" :listData="selectedCategoryList" @manage="onManageClick"/>
     </div>
     <div class="control-panel">
       <calc-str-bar :calcStr="calcStr"/>
@@ -32,6 +32,7 @@ import RadioButton from '/@/components/Radio/RadioButton.vue'
 import CalcStrBar from './common/CalcStrBar.vue'
 import NumberPad from "./common/NumberPad.vue";
 import CategoryList from "./common/CategoryList.vue";
+import {message} from "/@/components/Message"
 import {useStore} from "vuex";
 
 export default defineComponent({
@@ -47,11 +48,6 @@ export default defineComponent({
     NumberPad,
     CategoryList
   },
-  methods: {
-    handleSubmit() {
-      console.log('submit')
-    }
-  },
   setup() {
     const store = useStore()
     store.dispatch('category/load')
@@ -63,6 +59,32 @@ export default defineComponent({
     const onManageClick = () => {}
     const selectedCategoryList = computed<Category[]>(() => store.state.category.categoryList)
 
+    const validate = () => {
+      if (selectedId.value === -1) {
+        message.warning('分类不能为空')
+        return false
+      } else if (calcStr.value === '0') {
+        message.warning('数值不能为0')
+        return false
+      } else if (parseFloat(calcStr.value) < 0) {
+        message.warning('数值不能为负')
+        return false
+      }
+      return true
+    }
+    const handleSubmit = () => {
+      if (!validate()) {
+        return
+      }
+      store.dispatch('record/add', {
+        categoryId: selectedId.value,
+        moneyType: moneyType.value,
+        amount: +calcStr.value,
+        createAt: curDate.value.toISOString()
+      } as Omit<MoneyRecord, "id">)
+      message.success('记录添加成功')
+    }
+
     return {
       moneyType,
       selectedId,
@@ -70,6 +92,7 @@ export default defineComponent({
       curDate,
       onManageClick,
       selectedCategoryList,
+      handleSubmit
     }
   }
 })
