@@ -1,5 +1,5 @@
 <template>
-  <div class="radio-input">
+  <div class="radio-input" :class="groupClass">
     <slot />
   </div>
 </template>
@@ -9,7 +9,15 @@ import {defineComponent} from 'vue'
 
 export default defineComponent({
   props: {
-    value: String
+    value: String,
+    block: Boolean
+  },
+  computed: {
+    groupClass() {
+      return {
+        'is-block': this.block
+      }
+    }
   }
 })
 </script>
@@ -18,6 +26,9 @@ export default defineComponent({
 .radio-input {
   :nth-child(n+2) {
     margin-left: -1px;
+  }
+  &.is-block {
+    display: flex;
   }
 }
 </style>

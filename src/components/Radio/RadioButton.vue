@@ -27,7 +27,8 @@ export default defineComponent({
     radioButtonClassName(): {[index: string]: Boolean} {
       return {
         'radio-button': true,
-        'is-active': this.label === this.value
+        'is-active': this.label === this.value,
+        'is-block': this._radioGroup.block
       }
     },
     value: {
@@ -49,8 +50,12 @@ export default defineComponent({
   display: inline-block;
   padding: 5px 15px;
   line-height: 16px;
+  text-align: center;
   border: 1px solid $brand-color;
   color: $brand-color;
+  &.is-block {
+    flex: 1;
+  }
 
   .radio-button-input {
     display: none;
