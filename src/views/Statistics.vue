@@ -18,7 +18,7 @@
       <radio-button label="expenditure">支出</radio-button>
       <radio-button label="income">收入</radio-button>
     </radio-group>
-    <div class="echarts-container">
+    <div class="echarts-container" v-if="categoryRankData.length !== 0" >
       <async-echarts class="charts" height="200px" :option="option"/>
     </div>
     <div v-if="categoryRankData.length === 0" class="backup-message">暂无数据</div>

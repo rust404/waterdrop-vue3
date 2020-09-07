@@ -31,7 +31,6 @@ export default {
     size: String
   },
   setup(props) {
-    console.log(iconMap[props.name])
     return () => h(iconMap[props.name], {
       size: props.size
     })
