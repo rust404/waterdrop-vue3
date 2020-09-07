@@ -8,6 +8,7 @@ import {useStore} from "vuex";
 export default defineComponent({
   name: 'App',
   setup() {
+    console.log('setup')
     const store = useStore()
     store.dispatch('category/load')
     store.dispatch('record/load')

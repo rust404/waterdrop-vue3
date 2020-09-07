@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --config vite.config.js",
-    "build": "vite build"
+    "build": "vite build",
+    "build:deploy": "vite build --base=/waterdrop-vue3-site/"
   },
   "dependencies": {
     "@wing-ui/icons-vue3": "^0.0.1",
