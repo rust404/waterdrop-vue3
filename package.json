@@ -6,7 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@wing-ui/icons-vue3": "file:.yalc/@wing-ui/icons-vue3",
+    "@wing-ui/icons-vue3": "^0.0.1",
     "dayjs": "^1.8.35",
     "echarts": "4.8.0",
     "vue": "^3.0.0-rc.1",

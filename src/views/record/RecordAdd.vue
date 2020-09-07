@@ -90,6 +90,7 @@ export default defineComponent({
         createAt: curDate.value.toISOString()
       } as Omit<MoneyRecord, "id">)
       message.success('记录添加成功')
+      router.push('/record/detail')
     }
 
     return {

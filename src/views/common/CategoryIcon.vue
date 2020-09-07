@@ -10,6 +10,7 @@ import Book from '@wing-ui/icons-vue3/lib/Book'
 import Bus from '@wing-ui/icons-vue3/lib/Bus'
 import MobileAlt from '@wing-ui/icons-vue3/lib/MobileAlt'
 import HandHoldingUsd from '@wing-ui/icons-vue3/lib/HandHoldingUsd'
+import '@wing-ui/icons-vue3/lib/icon.css'
 import {defineComponent} from 'vue'
 
 export const iconList = ['utensils', 'suitcase-rolling', 'dollar-sign', 'book', 'bus', 'mobile-alt', 'hand-holding-usd']

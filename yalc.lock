@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "@wing-ui/icons-vue3": {
-      "signature": "eb99e2703465660cf28a8fb8e7238ba9",
-      "file": true
-    }
-  }
-}
