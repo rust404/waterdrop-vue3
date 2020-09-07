@@ -5,7 +5,7 @@
 <script lang="ts">
 import {defineComponent, ref, toRef, watch, onMounted, PropType} from 'vue'
 import {EChartOption, ECharts} from 'echarts'
-import * as echarts from 'echarts/echarts.all.js'
+import * as echarts from 'echarts/echarts.simple.js'
 
 type EchartsListeners = {
   [index: string]: Function | Function[];

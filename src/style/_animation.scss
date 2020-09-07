@@ -42,3 +42,12 @@ $map: (
     transition: opacity 300ms;
   }
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

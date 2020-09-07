@@ -18,7 +18,9 @@
       <radio-button label="expenditure">支出</radio-button>
       <radio-button label="income">收入</radio-button>
     </radio-group>
-    <v-echarts class="charts" height="200px" :option="option"/>
+    <div class="echarts-container">
+      <async-echarts class="charts" height="200px" :option="option"/>
+    </div>
     <div v-if="categoryRankData.length === 0" class="backup-message">暂无数据</div>
     <ol v-else class="category-rank-list">
       <li class="rank-list-item" v-for="item in categoryRankData" :key="item.category.id">
@@ -42,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, computed} from 'vue'
+import {defineComponent, defineAsyncComponent, ref, computed, h} from 'vue'
 import Layout from "/@/components/Layout.vue";
 import NavBar from "/@/components/NavBar.vue";
 import DatePicker from "/@/components/DatePicker/DatePicker.vue";
@@ -51,7 +53,8 @@ import TopBar from "/@/components/TopBar.vue";
 import RadioButton from "/@/components/Radio/RadioButton.vue";
 import RadioGroup from "/@/components/Radio/RadioGroup.vue";
 import CategoryIcon from "/@/views/common/CategoryIcon.vue";
-import VEcharts from "/@/components/VEcharts.vue";
+import Spinner from '@wing-ui/icons-vue3/lib/Spinner'
+// import VEcharts from "/@/components/VEcharts.vue";
 import dayjs from "dayjs";
 import {EChartOption} from "echarts";
 import {getCategoryById, getRecords, getRecordsByTime} from "/@/store/utils";
@@ -60,8 +63,26 @@ import {useStore} from "vuex";
 type CategoryToRecordsMap = { [categoryId: number]: MoneyRecord[] }
 type CategoryToSumMap = { [categoryId: number]: number }
 
+const AsyncEcharts = defineAsyncComponent({
+  loader: () => import("/@/components/VEcharts.vue"),
+  delay: 200,
+  timeout: 3000,
+  errorComponent: {render: () => h('div',  'loading echarts error')},
+  loadingComponent: {
+    render: () => h('div', {
+      style: {display: 'flex', alignItems: 'center'}
+      }, [
+        h(Spinner, {style: {
+            animation: "spin 1000ms infinite linear",
+            marginRight: "10px"
+          }}),
+        'loading echarts'
+    ])}
+})
+
 export default defineComponent({
   components: {
+    Spinner,
     Layout,
     NavBar,
     DatePicker,
@@ -69,7 +90,8 @@ export default defineComponent({
     TopBar,
     RadioButton,
     RadioGroup,
-    VEcharts,
+    AsyncEcharts,
+    // VEcharts,
     CategoryIcon,
   },
   setup() {
@@ -351,5 +373,14 @@ export default defineComponent({
   margin-top: 20px;
   font-size: 20px;
   text-align: center;
+}
+.echarts-container {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+.loading-icon {
 }
 </style>

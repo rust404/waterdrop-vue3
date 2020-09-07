@@ -8,6 +8,6 @@ module.exports = {
   // 解决echarts由于非es module产生的引入错误
   optimizeDeps: {
     exclude: ['echarts'],
-    include: ['echarts/echarts.all.js']
+    include: ['echarts/echarts.simple.js']
   },
 }

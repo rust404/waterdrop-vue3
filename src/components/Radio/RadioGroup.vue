@@ -24,6 +24,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .radio-input {
+  flex-shrink: 0;
   :nth-child(n+2) {
     margin-left: -1px;
   }
