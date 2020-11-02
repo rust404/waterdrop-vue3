@@ -1,9 +1,13 @@
-let maxRecordId = parseInt(window.localStorage.getItem('max_record_id') || '0') || 0
+import {PREFIX} from "/@/store/constants";
+
+const KEY = PREFIX + '_max_record_id'
+
+let maxRecordId = parseInt(window.localStorage.getItem(KEY) || '0') || 0
 function generateRecordId() {
     return ++maxRecordId
 }
 function saveMaxRecordId() {
-    window.localStorage.setItem('max_record_id', '' + maxRecordId)
+    window.localStorage.setItem(KEY, '' + maxRecordId)
 }
 
 export {

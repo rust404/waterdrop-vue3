@@ -22,7 +22,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .radio-input {
   flex-shrink: 0;
   :nth-child(n+2) {
@@ -30,6 +30,9 @@ export default defineComponent({
   }
   &.is-block {
     display: flex;
+    > * {
+      flex: 1;
+    }
   }
 }
 </style>

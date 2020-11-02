@@ -1,6 +1,7 @@
 import {MutationTree, Module, ActionTree, GetterTree} from "vuex";
 import {generateCategoryId, saveMaxCategoryId} from "/@/store/utils/generateCategoryId";
 import {getCategories, getCategoryById} from "/@/store/utils";
+import {PREFIX} from "/@/store/constants";
 
 const defaultCategoryList: Omit<Category, 'id'>[] = [
   {
@@ -67,6 +68,9 @@ const mutations: MutationTree<CategoryState> = {
     }
   },
 };
+
+const KEY = PREFIX + '_' + 'categories'
+
 const actions: ActionTree<CategoryState, {}> = {
   add({state, commit, dispatch}, payload: Omit<Category, "id">) {
     commit('add', payload)
@@ -82,10 +86,10 @@ const actions: ActionTree<CategoryState, {}> = {
     dispatch('save')
   },
   save({state}) {
-    window.localStorage.setItem('categories', JSON.stringify(state.categoryList))
+    window.localStorage.setItem(KEY, JSON.stringify(state.categoryList))
   },
   load({state, dispatch}) {
-    const list = JSON.parse(window.localStorage.getItem('categories') || '[]')
+    const list = JSON.parse(window.localStorage.getItem(KEY) || '[]')
     if (list.length > 0) {
       state.categoryList = list
       return

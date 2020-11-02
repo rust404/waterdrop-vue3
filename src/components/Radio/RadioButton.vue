@@ -4,7 +4,7 @@
         class="radio-button-input"
         type="radio"
         :value="label"
-        v-model="value"
+        v-model="curValue"
     >
     <span class="radio-button-text">
       <slot>{{ label }}</slot>
@@ -13,37 +13,42 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
-import RadioGroup from './RadioGroup.vue';
+import {defineComponent, computed, getCurrentInstance} from 'vue'
 
 export default defineComponent({
   props: {
     label: String
   },
-  computed: {
-    _radioGroup() {
-      return this.$parent as RadioGroup
-    },
-    radioButtonClassName(): {[index: string]: Boolean} {
+  setup(props, {emit}) {
+    const instance = getCurrentInstance()
+    const _radioGroup = computed(() => {
+      // TODO
+      return instance && instance.parent as any
+    })
+    const curValue = computed({
+      get: () => {
+        return _radioGroup.value.props.value
+      },
+      set: () => {
+        _radioGroup.value.emit('update:value', props.label)
+      }
+    })
+    const radioButtonClassName = computed(() => {
       return {
         'radio-button': true,
-        'is-active': this.label === this.value,
-        'is-block': this._radioGroup.block
+        'is-active': props.label === curValue.value,
+        'is-block': _radioGroup.value.block
       }
-    },
-    value: {
-      get():String | undefined {
-        return this._radioGroup.value
-      },
-      set() {
-        this._radioGroup.$emit('update:value', this.label)
-      }
+    })
+    return {
+      curValue,
+      radioButtonClassName
     }
-  },
+  }
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../style/variable.scss';
 
 .radio-button {
@@ -53,9 +58,6 @@ export default defineComponent({
   text-align: center;
   border: 1px solid $brand-color;
   color: $brand-color;
-  &.is-block {
-    flex: 1;
-  }
 
   .radio-button-input {
     display: none;

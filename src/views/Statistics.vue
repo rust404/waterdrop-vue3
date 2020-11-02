@@ -71,12 +71,12 @@ const AsyncEcharts = defineAsyncComponent({
   loadingComponent: {
     render: () => h('div', {
       style: {display: 'flex', alignItems: 'center'}
-      }, [
-        h(Spinner, {style: {
-            animation: "spin 1000ms infinite linear",
-            marginRight: "10px"
-          }}),
-        'loading echarts'
+    }, [
+      h(Spinner, {style: {
+          animation: "spin 1000ms infinite linear",
+          marginRight: "10px"
+        }}),
+      'loading echarts'
     ])}
 })
 
